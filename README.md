@@ -6,13 +6,13 @@ Diffusion models are generative models. They gradually corrupt the input by addi
 
 Visualizing noise added to an image of digit 4
 
-![Forward diffusion](forward.gif)
+![Forward diffusion](/images/forward.gif)
 
 # Visualizing reverse diffusion process
 
 Generating digit 7 from noise
 
-![Reverse diffusion](reverse_diffusion.gif)
+![Reverse diffusion](/images/reverse_diffusion.gif)
 
 
 
