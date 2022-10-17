@@ -26,11 +26,11 @@ This script
 
 by using appropriate arguments
 
-```$ python main.py --epochs <Number of epochs to train for> --lr <Learning rate> --T <Number of timesteps> --schedule <Variance schedules> --debug <For debugging> --save_model <To save trained model> --gif <Save forward and reverse diffusion gif> --model_name <Model name - for saving>```
+```
+$ python main.py --epochs <Number of epochs to train for> --lr <Learning rate> --T <Number of timesteps> --schedule <Variance schedules> --debug <For debugging> --save_model <To save trained model> --gif <Save forward and reverse diffusion gif> --model_name <Model name - for saving>
+```
 
-### Visualizing diffusion process and training a model on notebook
-
-[Notebook](https://github.com/SwethaSrikari/ImageGeneration-DiffusionModel/blob/main/Foward%20and%20reverse%20diffusion%20process.ipynb)
+### [Visualizing diffusion process and training a model on notebook](https://github.com/SwethaSrikari/ImageGeneration-DiffusionModel/blob/main/Foward%20and%20reverse%20diffusion%20process.ipynb)
 
 # References
 
