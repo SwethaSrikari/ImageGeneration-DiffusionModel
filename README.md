@@ -17,18 +17,18 @@ Generating digit 7 from noise
 
 # To run this script
 
+Install the libraries specified in [requirements.txt](https://github.com/SwethaSrikari/ImageGeneration-DiffusionModel/blob/readme/requirements.txt) and run this command on terminal with appropriate arguments
+
+```
+$ python main.py --epochs <Number of epochs to train for> --lr <Learning rate> --T <Number of timesteps> --schedule <Variance schedules> --debug <For debugging> --save_model <To save trained model> --gif <Save forward and reverse diffusion gif> --model_name <Model name - for saving>
+```
+
 This script 
 
 1. trains a simple Unet model for specified number of epochs
 2. the number of timesteps T, variance schedule and learning rate can be adjusted
 3. the trained model can be saved
 4. forward and reverse diffusion processes can be visualized using a gif
-
-by using appropriate arguments
-
-```
-$ python main.py --epochs <Number of epochs to train for> --lr <Learning rate> --T <Number of timesteps> --schedule <Variance schedules> --debug <For debugging> --save_model <To save trained model> --gif <Save forward and reverse diffusion gif> --model_name <Model name - for saving>
-```
 
 ### [Visualizing diffusion process and training a model on notebook](https://github.com/SwethaSrikari/ImageGeneration-DiffusionModel/blob/main/Foward%20and%20reverse%20diffusion%20process.ipynb)
 
