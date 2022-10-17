@@ -1,4 +1,5 @@
 import math
+import pickle
 import torch
 import argparse
 import torch.nn.functional as F
@@ -6,12 +7,13 @@ import torch.nn.functional as F
 from models.unet import Unet
 from utils.dataloader import Dataloader
 from utils.forward_diffusion import forward_diffusion
+from utils.diffusion_gif import reverse_diffusion_gif, forward_diffusion_gif
 
 
 IMG_SIZE = 32
 BATCH_SIZE = 128
 
-def train(epochs, lr, T, schedule, debug=False):
+def train(epochs, lr, T, schedule, debug, save_model, gif, model_name):
     """
     Trains the model to predict noise at a timestep
     
@@ -29,7 +31,7 @@ def train(epochs, lr, T, schedule, debug=False):
     
     data = Dataloader(IMG_SIZE, BATCH_SIZE, debug=debug)
     print('Total number of batches in the datset', len(data))
-    
+        
     for epoch in range(epochs):
         for step, batch in enumerate(data):
             optimizer.zero_grad()
@@ -44,6 +46,15 @@ def train(epochs, lr, T, schedule, debug=False):
             optimizer.step()
             if epoch % 1 == 0 and step == 0:
                 print(f"Epoch {epoch} | Loss: {loss.item()} ")
+
+    if gif:
+        print(f'------------------------------Saving forward and reverse diffusion gifs------------------------------')
+        forward_diffusion_gif(batch[0][0], T, IMG_SIZE, device, schedule)
+        reverse_diffusion_gif(model, T, IMG_SIZE, device, schedule)
+        
+    if save_model:
+        print(f'------------------------------Saving model as {model_name}------------------------------')
+        pickle.dump(model, open(model_name, 'wb'))
                 
 
 if __name__ == '__main__':
@@ -55,6 +66,9 @@ if __name__ == '__main__':
     parser.add_argument('--schedule', type=str, default='linear',
                         help='Variance schedules', choices=['linear', 'cosine'])
     parser.add_argument('--debug', type=bool, default=False, help='For debugging')
+    parser.add_argument('--save_model', type=bool, default=False, help='To save trained model')
+    parser.add_argument('--gif', type=bool, default=False, help='Save forward and reverse diffusion gif')
+    parser.add_argument('--model_name', type=str, default='model', help='Model name - for saving')
     
     args = parser.parse_args()
-    train(args.epochs, args.lr, args.T, args.schedule, args.debug)
+    train(args.epochs, args.lr, args.T, args.schedule, args.debug, args.save_model, args.gif, args.model_name)
